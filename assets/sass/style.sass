@@ -57,15 +57,11 @@ body
             display: flex
             flex-direction: row
             padding: 30px
-            text-decoration: none
             align-items: center
             justify-content: center
-
-            button
-                border: 0px
-                border-color: none
-                border-radius: 100px
-                background-color: #F9F9F9
+            border-color: #F9F9F9
+            border-width: thin
+            border-bottom-style: solid
 
             h5
                 padding-right: 1rem
@@ -95,7 +91,12 @@ body
                 padding-right: 1rem
                 padding-bottom: 0rem
                 align-self: center
-            .shareIcon
+
+    button
+                border: 0px
+                border-color: none
+                background-color: white
+                .shareIcon
                 width: 20%
                 padding: auto
                 align-self: center
@@ -123,3 +124,13 @@ body
                 max-width: 100%
                 display: block
             
+    .searchBar
+        padding: 10px
+        align-items: center
+        justify-content: center
+        border-color: #F9F9F9
+        border-width: thin
+        border-bottom-style: solid
+        input
+            border-color: #F9F9F9
+            border-style: solid

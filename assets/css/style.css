@@ -450,20 +450,15 @@ body .vertical .cardDay {
       -ms-flex-direction: row;
           flex-direction: row;
   padding: 30px;
-  text-decoration: none;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-body .vertical .cardDay button {
-  border: 0px;
-  border-color: none;
-  border-radius: 100px;
-  background-color: #F9F9F9;
+  border-color: #F9F9F9;
+  border-width: thin;
+  border-bottom-style: solid;
 }
 
 body .vertical .cardDay h5 {
@@ -516,7 +511,10 @@ body .vertical .cardDay .fivewIcon {
       align-self: center;
 }
 
-body .vertical .cardDay .shareIcon {
+body button {
+  border: 0px;
+  border-color: none;
+  background-color: white;
   width: 20%;
   padding: auto;
   -ms-flex-item-align: center;
@@ -552,5 +550,23 @@ body #nav .navBtn {
 body #nav .navBtn .navIcon {
   max-width: 100%;
   display: block;
+}
+
+body .searchBar {
+  padding: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-color: #F9F9F9;
+  border-width: thin;
+  border-bottom-style: solid;
+}
+
+body .searchBar input {
+  border-color: #F9F9F9;
+  border-style: solid;
 }
 /*# sourceMappingURL=style.css.map */
