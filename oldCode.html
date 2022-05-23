@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -17,42 +17,107 @@
     <!-- https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/api/?disjunctive.cou_name_en&sort=name/ -->
     <!--<script src="geonames-all-cities-with-a-population-1000"></script>-->
 
-    
+    <script src="app/main.js"></script>
 
 </head>
 <body>
-
-    <!-- BARRA BUSCADOR -->
-    <div class="searchBar">
-        <div>
-            <label for="search"></label>
-            <input type="text" placeholder="Search cities" name="search" class="buscarCiudad">
-            <button class="lupaIcon" type="submit"><i class="nose"><img src="assets/images/SEARCH_BAR_ICON.svg" alt="Search bar icon"></i></button>
-        </div>
+    <!-- HEADER -->
+    <div class="header">
+        <h1 class="yourCityName"></h1>
+        <h5 class="yourCountry"></h5>
+        <h3 class="yourCityIcon"></h3>
+        <h2 class="yourCityTemp"></h2>
+        <h5 class="cielo"></h5>
     </div>
 
+    <!-- CARRUSEL HORIZONTAL -->
+    <div class="hztHour">
+
+        <div class="cardHour">
+            <h6>Max. Temp</h6>
+            <h5 class="maxTemp"></h5>
+        </div>
+
+        <div class="cardHour">
+            <h6>Min. Temp</h6>
+            <h5 class="minTemp"></h5>
+        </div>
+
+        <div class="cardHour">
+            <h6>Wind speed</h6>
+            <h5 class="windSpeed"></h5>
+        </div>
+
+        <div class="cardHour">
+            <h6>Predictability</h6>
+            <h5 class="precipitaciones"></h5>
+        </div>
+
+        <div class="cardHour">
+            <h6>Humidity</h6>
+            <h5 class="humedad"></h5>
+        </div>
+
+        <div class="cardHour">
+            <h6>Air presure</h6>
+            <h5 class="airPre"></h5>
+        </div>
+        
+    </div>
 
     <!-- CARRUSEL VERTICAL -->
     <div class="vertical">
-        
-        
-       
-<!--
+        <!-- <div class="cardHour">
+            <h5>Lunes</h5>
+            <img class="hourIcon" src="assets/images/DAY_RAIN_ICON.svg" alt="icono atmosferico detalle">
+            <h5>24ºC</h5>
+            <img class="hourIcon" src="assets/images/SHARE_ICON.svg" alt="icono compartir">
+        </div> -->
+
         <div class="cardDay">
             <h5 class="fechaOneDay"></h5>
             <h6 class="onewIcon"></h6>
             <h5 class="oneDayTemp"></h5>
-            <button class="shareIcon"><img src="/assets/images/share.svg" alt="share icon"></button>
-            <button class="shareIcon"><img src="/assets/images/ADD_ICON.svg" alt="add icon"></button>
+            <button class="shareIcon"><img src="assets/images/share.svg" alt="share icon"></button>
         </div>
--->
 
+        <div class="cardDay">
+            <h5 class="fechaTwoDay"></h5>
+            <h6 class="twowIcon"></h6>
+            <h5 class="twoDayTemp"></h5>
+            <button class="shareIcon"><img src="assets/images/share.svg" alt="share icon"></button>
+        </div>
 
+        <div class="cardDay">
+            <h5 class="fechaThreeDay"></h5>
+            <h6 class="threewIcon"></h6>
+            <h5 class="threeDayTemp"></h5>
+            <button class="shareIcon"><img src="assets/images/share.svg" alt="share icon"></button>
+        </div>
+
+        <div class="cardDay">
+            <h5 class="fechaFourDay"></h5>
+            <h6 class="fourwIcon"></h6>
+            <h5 class="fourDayTemp"></h5>
+            <button class="shareIcon"><img src="assets/images/share.svg" alt="share icon"></button>
+        </div>
+
+        <div class="cardDay">
+            <h5 class="fechaFiveDay"></h5>
+            <h6 class="fivewIcon"></h6>
+            <h5 class="fiveDayTemp"></h5>
+            <button class="shareIcon"><img src="assets/images/share.svg" alt="share icon"></button>
+        </div>
+
+        <div class="cardDay">
+            <h5 class="fechaSixDay"></h5>
+            <h6 class="sixwIcon"></h6>
+            <h5 class="sixDayTemp"></h5>
+        </div>
         
     </div>
     <!-- NAV -->
     <div id="nav">
-
 
         <button class="navBtn">
             <a href="index.html"><img class="navIcon" src="assets/images/HOME_ICON.svg" alt="icono home"></a>
@@ -65,6 +130,8 @@
         <!-- <button class="navBtn">
             <a href="location.html"><img class="navIcon" src="assets/images/LOCATIONS_ICON.svg" alt="icono localizaciones"></a>
         </button> -->
+
+
 
         <!-- <form action="/HOME.html">
             <button class="navBtn">
@@ -88,17 +155,17 @@
             <button class="navBtn">
                 <img class="navIcon" src="assets/images/LOCATIONS_ICON.svg" alt="icono localizaciones">
             </button>
-        </form>
+        </form> -->
 
         
 
-        <div class="navItem">
-            <a href="index.html">HOME</a>
+        <!-- <div class="navItem">
+            <a href="HOME.html">HOME</a>
             <img class="navIcon" src="assets/images/HOME_ICON.svg" alt="icono home">
         </div>
 
         <div class="navItem">
-            <a href="search.html">SEARCH</a>
+            <a href="SEARCH.html">SEARCH</a>
             <img class="navIcon" src="assets/images/SEARCH_ICON.svg" alt="icono buscador">
         </div>
 
@@ -107,6 +174,6 @@
             <img class="navIcon" src="assets/images/LOCATIONS_ICON.svg" alt="icono localizaciones">
         </div> -->
     </div>
-    <script src="app/search.js"></script>
 </body>
-</html>
+</html> 
+

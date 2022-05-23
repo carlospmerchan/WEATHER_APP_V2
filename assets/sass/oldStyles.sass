@@ -1,0 +1,136 @@
+@import "lib/vars"
+@import "lib/reboot"
+@import "lib/type"
+
+body
+
+    .header
+        display: flex
+        flex-direction: column
+        justify-content: center
+        text-align: center
+        
+        .yourCityIcon
+            max-width: 20%
+            align-self: center
+            margin-top: 1rem
+            margin-bottom: 1rem
+
+        .yourCityName
+            margin-top: 1rem
+            margin-bottom: 1rem
+
+        .yourCityTemp
+            margin-top: 1rem
+            margin-bottom: 1rem
+
+
+    .hztHour
+        overflow: auto
+        white-space: nowrap
+        padding: 15px
+        background-color: #F9F9F9
+        display: flex
+        flex-direction: row
+
+        
+        .cardHour
+            display: flex
+            flex-direction: column
+            align-content: center
+            padding: 1rem
+            text-decoration: none
+            .hourIcon
+                height: 50px
+                width: 100%
+
+
+    .vertical
+        overflow: auto
+        display: flex
+        flex-direction: column
+        justify-content: center
+        text-align: center
+        
+        
+        .cardDay
+            display: flex
+            flex-direction: row
+            padding: 30px
+            align-items: center
+            justify-content: center
+            border-color: #F9F9F9
+            border-width: thin
+            border-bottom-style: solid
+
+            h5
+                padding-right: 1rem
+                margin-bottom: 0rem
+            .onewIcon
+                width: 20%
+                padding-right: 1rem
+                padding-bottom: 0rem
+                align-self: center
+            .twowIcon
+                width: 20%
+                padding-right: 1rem
+                padding-bottom: 0rem
+                align-self: center
+            .threewIcon
+                width: 20%
+                padding-right: 1rem
+                padding-bottom: 0rem
+                align-self: center
+            .fourwIcon
+                width: 20%
+                padding-right: 1rem
+                padding-bottom: 0rem
+                align-self: center
+            .fivewIcon
+                width: 20%
+                padding-right: 1rem
+                padding-bottom: 0rem
+                align-self: center
+
+    button
+                border: 0px
+                border-color: none
+                background-color: white
+                .shareIcon
+                width: 20%
+                padding: auto
+                align-self: center
+
+            
+
+    #nav
+        overflow: hidden
+        background-color: black
+        position: fixed
+        bottom: 0
+        width: 100%
+        display: flex
+        align-content: center
+        justify-content: space-evenly
+        padding: 15px
+
+        .navBtn
+            background-color: black
+            padding: 0px
+            border: 0px
+            width: 50px
+            height: 50px
+            .navIcon
+                max-width: 100%
+                display: block
+            
+    .searchBar
+        padding: 10px
+        align-items: center
+        justify-content: center
+        border-color: #F9F9F9
+        border-width: thin
+        border-bottom-style: solid
+        input
+            border-color: #F9F9F9
+            border-style: solid
