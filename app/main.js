@@ -15,6 +15,9 @@ const city = ('London');
 let contador = 0;
 let addList = ('.addList')
 
+
+
+
 // API KEY constante
 const API_KEY ='7228d25d50b11f8cbb6fad12eb358a13';
 console.log (currentTempEl)
@@ -36,29 +39,47 @@ setInterval(() => {
 
 }, 1000);
 
-//OBTENER POSICION DEL CLIENTE
-getWeatherData()
-function getWeatherData () {
-    navigator.geolocation.getCurrentPosition((success) => {
+navigator.geolocation.getCurrentPosition((success) => {
         
-        let {latitude, longitude } = success.coords;
+    let {latitude, longitude } = success.coords;
+    //OBTENER POSICION DEL CLIENTE
+    getWeatherData(latitude, longitude);
+    
+})
 
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
 
-        console.log(data)
+//pedir datos por lat y long
+function getWeatherData(lat, long) {
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`)
+    .then(res => res.json())
+    .then(data => {
+        timezone.innerHTML = data.timezone;
+        countryEl.innerHTML = data.lat + 'N ' + data.lon+'E';
         showWeatherData(data);
-        })
+})
 
+}
+
+//pedir datos por nombre
+function getWeatherDatabyName(city) {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
+    .then(res => res.json())
+    .then(data => {
+
+        getWeatherData(data.coord.lat, data.coord.lon);
+      
     })
+       
 }
 
 
 //FUNCIÓN MOSTRAR DATOS A PARTIR DE LAT LON
 function showWeatherData (data){
-  let {humidity, pressure, sunrise, sunset, wind_speed} = data.current;
+    let {humidity, pressure, sunrise, sunset, wind_speed} = data.current;
+    
+    
 
-  timezone.innerHTML = data.timezone;
-  countryEl.innerHTML = data.lat + 'N ' + data.lon+'E'
+  
 
   currentWeatherItemsEl.innerHTML = 
   `<div class="weather-item">
@@ -119,45 +140,51 @@ function showWeatherData (data){
 
 //BUSCADOR
  button.addEventListener("click", (e) =>{
-   getWeatherData(input.value)
+   getWeatherDatabyName(input.value)
    //setInterval(input.value)
-   console.log(input.value)
-   const city = (input.value);
+   //console.log(input.value)
+//    const city = (input.value);
 
-       if(input.value != ""){
-         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
-         .then(res => res.json())
-         .then(data => {
-           console.log(data)
-       });
-     }
-   });
+//        if(input.value != ""){
+//          fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
+//          .then(res => res.json())
+//          .then(data => {
+//            console.log(data)
+//        });
+//      }
+});
 
 
 
    //GUARDAR CIUDADES
+   let ciudades;
 let btnAdd = document.querySelector('#btnAdd');
 let addlist = document.querySelector('.addlist');
 db = new PouchDB('saveCities')
-
+    //BTN AÑADIR CIUDADES
+btnAdd.addEventListener ("click", capCity, false);
+// btnAdd.addEventListener ("click", function (){
+// alert("dfghjk")
+// });
    function capCity(){
      let ciudadAdd = document.querySelector ('#time-zone');
      let doc = {
       "_id": `city${contador}`,
       "name": ciudadAdd.textContent
-     }
+     };
      db.put(doc);
      verciudades();
+     console.log(ciudadAdd.textContent)
    };
+
+
    function verciudades (){
-
-
     db.allDocs({include_docs: true}, function(error, docs) {
       if (error) {
           return console.log(error);
       } else {                
           ciudades = docs.rows;          
-          counter = docs.rows.length;
+          contador = docs.rows.length;
           addList.innerHTML = "";
           ciudades.forEach(element => {     
               let city = `<li class="citySave">
@@ -172,8 +199,7 @@ db = new PouchDB('saveCities')
 
 };
 
-//BTN AÑADIR CIUDADES
-btnAdd.addEventListener ("click", capCity, false);
+
 
 
 
