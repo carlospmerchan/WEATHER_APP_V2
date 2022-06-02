@@ -11,16 +11,21 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const lupaIcon = ['.lupaIcon']
 let input = document.querySelector('input');
 let button = document.querySelector('button');
-const city = ('London');
+const city = document.querySelector('London');
 let contador = 0;
-let addList = ('.addList')
+let addList = document.querySelector('.addList');
 
 
+
+let ciudades;
+let btnAdd = document.querySelector('#btnAdd');
+//let addlist = document.querySelector('.addlist');
+let db = new PouchDB('saveCities');
 
 
 // API KEY constante
 const API_KEY ='7228d25d50b11f8cbb6fad12eb358a13';
-console.log (currentTempEl)
+//console.log (currentTempEl)
 
 //PINTAR DATOS ACTUALES
 setInterval(() => {
@@ -44,6 +49,7 @@ navigator.geolocation.getCurrentPosition((success) => {
     let {latitude, longitude } = success.coords;
     //OBTENER POSICION DEL CLIENTE
     getWeatherData(latitude, longitude);
+    verciudades();
     
 })
 
@@ -53,7 +59,13 @@ function getWeatherData(lat, long) {
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`)
     .then(res => res.json())
     .then(data => {
-        timezone.innerHTML = data.timezone;
+        //console.log(data);
+        let strIn = data.timezone;
+        let searchTerm = '/';
+        let searchIndex = strIn.indexOf(searchTerm);
+        let city = strIn.substr(searchIndex + searchTerm.length);
+   
+        timezone.innerHTML = city;
         countryEl.innerHTML = data.lat + 'N ' + data.lon+'E';
         showWeatherData(data);
 })
@@ -65,12 +77,12 @@ function getWeatherDatabyName(city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
     .then(res => res.json())
     .then(data => {
-
+        
         getWeatherData(data.coord.lat, data.coord.lon);
       
     })
        
-}
+};
 
 
 //FUNCIÓN MOSTRAR DATOS A PARTIR DE LAT LON
@@ -157,10 +169,7 @@ function showWeatherData (data){
 
 
    //GUARDAR CIUDADES
-   let ciudades;
-let btnAdd = document.querySelector('#btnAdd');
-let addlist = document.querySelector('.addlist');
-db = new PouchDB('saveCities')
+
     //BTN AÑADIR CIUDADES
 btnAdd.addEventListener ("click", capCity, false);
 // btnAdd.addEventListener ("click", function (){
@@ -174,30 +183,75 @@ btnAdd.addEventListener ("click", capCity, false);
      };
      db.put(doc);
      verciudades();
-     console.log(ciudadAdd.textContent)
+     let paint = document.querySelectorAll('.citySave')
+     paint.forEach((elem) => {
+        elem.addEventListener("click", (e) =>{
+            console.log("xd")
+        });
+    }) 
+        
    };
 
 
-   function verciudades (){
-    db.allDocs({include_docs: true}, function(error, docs) {
-      if (error) {
-          return console.log(error);
-      } else {                
-          ciudades = docs.rows;          
-          contador = docs.rows.length;
-          addList.innerHTML = "";
-          ciudades.forEach(element => {     
-              let city = `<li class="citySave">
-                              <div>${element.doc.name}</div>
-                          </li> 
-                          `;
-              addList.innerHTML += city;
-          });
+    function verciudades (){
+       
+        db.allDocs({include_docs: true}, function(error, docs) {
+           
+            if (error) {
+                return console.log(error);
+            } else {                
+                ciudades = docs.rows;          
+                contador = docs.rows.length;
+                addList.innerHTML = "";
+                ciudades.forEach(element => {    
+                    //console.log("holi") 
+                    let city = `<li class="citySave">
+                                    <div>${element.doc.name}</div>
+                                </li> 
+                                `;
+                    addList.innerHTML += city;
+                });
 
-      }
-  });
+                let paint = document.querySelectorAll('.citySave')
+                //console.log(paint)
+                paint.forEach((elem) => {
+                    elem.addEventListener("click", (e) =>{
 
-};
+
+                        function getWeatherDatabySearch(city) {
+                            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
+                            .then(res => res.json())
+                            .then(data => {
+                                
+                                getWeatherData(data.coord.lat, data.coord.lon);
+                              
+                            })
+                               
+                        };
+
+
+                        
+                    });
+                }) 
+        
+
+            }
+        });
+
+    };
+
+
+    //PINTAR CIUDADES GUARDADAS
+        
+       /*     
+          paint.forEach(function (paint) {
+            paint.addEventListener("click", (p) =>{
+                console.log("xd")
+            });
+        });  */
+            
+    
+        
 
 
 
